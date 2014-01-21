@@ -7,8 +7,8 @@ Server = require('mongodb').Server;
 app.engine('html', cons.swig);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
+app.use(express.bodyParser());
 app.use(app.router);
-app.use(exp);
 
 function errorHandler(err, req, res, next){
 	console.error(err.message);
@@ -19,12 +19,25 @@ function errorHandler(err, req, res, next){
 app.use(errorHandler);
 
 var mongoclient = new MongoClient(new Server('localhost', 27017, {'native_parser': true}));
-var db = mongoclient.db('fruit');
-
-app.get('/', function(req, res){
-	db.collection('fruit').find({}, function(err ,doc){
+var db = mongoclient.db('fruits');
+app.post('/favorite_fruit', function(req, res, next) {
+    var favorite = req.body.fruit;
+    if (typeof favorite == 'undefined') {
+        next(Error('Please choose a fruit!'));
+    }
+    else {
+        res.send("Your favorite fruit is " + favorite);
+    }
+});
+app.get('/', function(req, res, next){
+/*	db.collection('fruit').find({}, function(err ,doc){
 		res.render('hello', doc);
 	});	
+	*/
+	//db.collection('fruits').find({}, function(err ,doc){
+//		console.log (doc);
+	res.render('fruit', {'fruits': ['apple', 'lemon', 'orange']});
+	//});	
 });
 app.get('/:name', function(req, res, next){
 	var name = req.params.name;
