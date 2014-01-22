@@ -1,0 +1,16 @@
+Create - Insert
+Read - Find
+Update - Update
+Delete - Remove
+
+
+Collections is a properties of DB
+db - database
+
+documents live inside collections
+
+$gte - = > 95 large than or equal
+$lte - = < 98 less than or equal
+
+$gte - > 95 large than 
+$lte - < 98 less than
