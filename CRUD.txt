@@ -15,6 +15,7 @@ $lte - = < 98 less than or equal
 $gte - > 95 large than 
 $lte - < 98 less than
 
+
 $regex : '^A'
 	 'e$'
 	 'a'
@@ -26,3 +27,11 @@ db.scores.find({$and: [{score: {$lt: 50}}, {score: {$gt: 90}}]});
 the same
 
 db.scores.find({score: {$lt: 90}, {$gt: 50}});
+
+
+cursor - hasNext()/ next()/ limmit(n)/ sort({name: -1})/ sort({name: -1}).limit(3)/ sort({name: -1}).limit(3).skip(2)
+
+
+
+db.scores.find()
+db.scores.count()
